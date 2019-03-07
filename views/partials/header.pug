@@ -1,0 +1,25 @@
+header.header
+    .header__in
+        .logo 
+            a(href=routes.home) LOGO
+        ul
+            li 
+                a(href=routes.home) HOME
+            li
+                a(href="#") BOARD
+            li 
+                a(href="#") VIDEO
+            li 
+                a(href="#") MAP
+        ul
+            if !user.isAuthenticated
+                li 
+                    a(href=routes.login) LOGIN
+                li 
+                    a(href=routes.join) JOIN
+            else
+                li
+                    a(href="#") INFO
+                li
+                    a(href="#") LOGOUT
+    .container
