@@ -1,7 +1,7 @@
 import routes from "./routes";
 import multer from "multer";
 
-const write = multer({ dest:"write/" });
+const uploadWrite = multer({ dest:"uploads/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = 'TEST';
@@ -11,4 +11,7 @@ export const localsMiddleware = (req, res, next) => {
         id : 1
     }
     next();
-}
+};
+
+
+export const uploadWriteSingle = uploadWrite.single("insertInputName")

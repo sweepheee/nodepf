@@ -5,10 +5,10 @@ import User from "../models/User";
 export const home = async (req, res) => {
     try {
         const users = await User.find({});
-        res.render("home", {pageTitle: "home"});
+        res.render("home", {pageTitle: "home", User});
     }catch(error) {
         console.log(error);
-        res.render("home", {pageTitle: "home"});
+        res.render("home", {pageTitle: "home", User: [] });
     }
 }
 

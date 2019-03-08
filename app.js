@@ -5,11 +5,13 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import userRouter from "./routers/userRouter";
 import globalRouter from "./routers/globalRouter";
+import boardRouter from "./routers/boardRouter";
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
 import "./db";
 import dotenv from "dotenv";
 import "./models/User"
+import "./models/Board"
 
 
 const app = express();
@@ -32,5 +34,6 @@ app.use(localsMiddleware);
 // Routers
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
+app.use(routes.board, boardRouter);
 
 app.listen(PORT, (req, res) => console.log("server on http://localhost:4000"));
