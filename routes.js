@@ -15,6 +15,7 @@ const CHANGE_PASSWORD = "/change-password";
 
 const BOARD = "/board";
 const WRITE = "/write";
+const BOARD_VIEW = "/:id"
 
 
 
@@ -34,7 +35,13 @@ const routes = {
     editProfile: EDIT_PROFILE,
     changePassword: CHANGE_PASSWORD,
     board: BOARD,
-    write: WRITE
+    write: WRITE,
+    boardView: (id) => {
+        if(id) {
+            return `/board/${id}`;
+        }
+        return BOARD_VIEW;
+    }
 };
 
 export default routes;

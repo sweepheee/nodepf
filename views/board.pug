@@ -2,4 +2,8 @@ extends layouts/main
 
 block content
     .board__container
-        p board
+        each title in posts
+            table
+                tr
+                    td
+                        a(href=`board/${title.id}`)=title.title

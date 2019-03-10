@@ -1,0 +1,10 @@
+extends layouts/main
+
+block content
+    .form__container
+        form(action=`/board${routes.write}`, method="post", enctype="multipart/form-data")
+            img(src=`../${post.imageFile}`)
+            p.board__title=post.title
+            p.board__content=post.content
+            p.board__date=post.createdAt
+            input(type="submit", value="write")

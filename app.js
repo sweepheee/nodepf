@@ -23,6 +23,9 @@ app.set("view engine", "pug");
 
 // Middlewares (니코는 커넥션이라고 부리기도 함.)
 app.use(helmet());
+app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("static"));
+app.use("/images", express.static("images"));
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());

@@ -3,8 +3,7 @@ import mongoose from "mongoose";
 const boardSchema = new mongoose.Schema({
     no: {
         type: Number,
-        default: 0,
-        index: true
+        default: 0
     },
     title : {
         type: String,
@@ -14,7 +13,8 @@ const boardSchema = new mongoose.Schema({
     createdAt : {
         type: Date,
         default: Date.now
-    }
+    },
+    imageFile: String
 })
 
 const model = mongoose.model("board", boardSchema);

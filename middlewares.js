@@ -1,7 +1,7 @@
 import routes from "./routes";
 import multer from "multer";
 
-const uploadWrite = multer({ dest:"uploads/" });
+const uploadWrite = multer({ dest:"uploads/image/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = 'TEST';
@@ -14,4 +14,4 @@ export const localsMiddleware = (req, res, next) => {
 };
 
 
-export const uploadWriteSingle = uploadWrite.single("insertInputName")
+export const uploadWriteSingle = uploadWrite.single("imageFile")
