@@ -14,7 +14,7 @@ header.header
             li 
                 a(href="#") MAP
         ul
-            if !user.isAuthenticated
+            if !user
                 li 
                     a(href=routes.login) LOGIN
                 li 

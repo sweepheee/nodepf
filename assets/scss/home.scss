@@ -1,0 +1,89 @@
+.body__container {
+    clear: both;
+    width: 70%;
+    padding: 0;
+    margin: 0 auto;
+    margin-bottom: 900px;
+    .container__in {
+        width: 100%;
+        margin: 0 auto;
+        .in__newPosts {
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
+            .bar__high {
+                width: 100%;
+                height: 250px;
+                margin: 30px auto;
+                overflow: hidden;
+                img {
+                    margin: 0 auto;
+                
+                }
+            }
+            .newPosts__title {
+                margin-top: 50px;
+                ul {
+                    display: inline;
+                    li {
+                        margin-top: 30px;
+                        width: 230px;
+                        height: 400px;
+                        text-align: center;
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        margin-left: 30px;
+                        float: left;
+                    }
+                }
+            }
+            .popPosts_title {
+                clear: both;
+                padding-top: 100px;
+                ul {
+                    li {
+                        margin-top: 30px;
+                        width: 230px;
+                        height: 400px;
+                        text-align: center;
+                        border: 1px solid black;
+                        border-collapse: collapse;
+                        margin-left: 30px;
+                        float: left;
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+// .body__container_sec {
+//     padding: 0;
+//     width: 100%;
+//     height: 500px;
+//     margin: 0 auto;
+//     background-color: #34495e;
+//     .like__post__orderBy {
+//         width: 70%;
+//         margin: 0 auto;
+//         ul {
+//             margin: 0 auto;
+//             display: inline;
+//             li {
+//                 color: #bdc3c7;
+//                 margin-top: 130px;
+//                 width: 230px;
+//                 height: 230px;
+//                 text-align: center;
+//                 margin-left: 170px;
+//                 float: left;
+//                 h1 {
+//                     font-size: 24px;
+//                     margin-top: 15px;
+//                 }
+//             }
+//         }
+//     }
+// }

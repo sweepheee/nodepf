@@ -2,8 +2,25 @@ extends layouts/main
 
 block content
     .board__container
-        each title in posts
+        .board__in
             table
-                tr
-                    td
-                        a(href=`board/${title.id}`)=title.title
+                thead
+                    tr.board-table__header
+                        td 글번호
+                        td.board__table__title 제목
+                        td 작성자
+                        td 날짜
+                tbody
+                    each post in posts
+                        tr
+                            td
+                                a(href=`board/${post.id}`)=post.no
+                            td
+                                a(href=`board/${post.id}`)=post.title
+                            td
+                                a(href=`board/${post.id}`)=post.title
+                            td
+                                a(href=`board/${post.id}`)=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
+            a(href="/board/write")
+                button 글쓰기
+            

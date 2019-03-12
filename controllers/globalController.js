@@ -1,3 +1,4 @@
+import passport from "passport";
 import routes from "../routes"
 import User from "../models/User";
 
@@ -14,22 +15,33 @@ export const home = async (req, res) => {
 
 // JOIN ROUTER
 export const getJoin = (req, res) => res.render("join");
-export const postJoin = (req, res) => {
+export const postJoin = async (req, res, next) => {
     console.log(req.body); // 바디파서가 있어서 작동함.
     const { 
-        body: { email, password, password2, nickname}
+        body: { name, email, password, password2}
      } = req;
      if(password !== password2) {
          res.status(400);
          res.render("join", {pageTitle: "join"}); 
-         // 이 부분 나중에 비밀번호 틀리다고 수정해야함
+     }else {
+        try {
+            const user = await User({
+                name,
+                email
+            });
+            await User.register(user, password);
+            next();
+        }catch(error) {
+            console.log(error);
+            res.redirect(routes.home);
+        }
      }
-    res.redirect(routes.home);
-}
+};
 
 
 // LOGIN ROUTER
 export const getLogin = (req, res) => res.render("login");
-export const postLogin = (req, res) => {
-    res.redirect(routes.home);
-}
+export const postLogin = passport.authenticate('local', {
+    failureRedirect: routes.login,
+    successRedirect: routes.home
+});
