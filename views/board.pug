@@ -21,6 +21,9 @@ block content
                                 a(href=`board/${post.id}`)=post.title
                             td
                                 a(href=`board/${post.id}`)=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
-            a(href="/board/write")
-                button 글쓰기
+
+            if loggedUser
+                a(href="/board/write")
+                    button 글쓰기
+
             

@@ -1,6 +1,12 @@
 footer.footer
     .footer__in
-        img(src="../images/man.svg", width="200px")
-        P USER_ID
-        button 개인정보 
-        button 로그아웃
+        if loggedUser
+            img(src=loggedUser.avatarUrl, width="200px")
+            P=loggedUser.email
+            button
+                a(href=routes.me) 개인정보 
+            button
+                a(href=routes.logout) 로그아웃
+
+        else
+            a(href=routes.login) 로그인

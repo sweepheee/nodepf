@@ -1,11 +1,15 @@
-extends layouts/main
-
-block content
-    .form__container
-        form(action="/join", method="post")
-            input(type="email", name="email", placeholder="Email")
-            input(type="text", name="name", placeholder="Nickname")
-            input(type="password", name="password", placeholder="password")
-            input(type="password", name="password2", placeholder="password")
-            input(type="submit", value="JOIN")
-        include partials/socialLogin
+doctype html
+html
+    head
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.7.2/css/all.css", integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", crossorigin="anonymous")
+        title #{pageTitle} | #{siteName}
+        link(rel="stylesheet", href="/static/styles.css")
+    body
+        .form__container
+            img(src="../images/thank-you.svg")
+            form(action="/join", method="post")
+                input(type="email", name="email", placeholder="Email")
+                input(type="text", name="name", placeholder="Nickname")
+                input(type="password", name="password", placeholder="password")
+                input(type="password", name="password2", placeholder="password")
+                input(type="submit", value="JOIN")

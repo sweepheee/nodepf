@@ -1,9 +1,16 @@
-extends layouts/main
-
-block content
-    .form__container
-        form(action="/login", method="post")
-            input(type="email", name="email", placeholder="Email")
-            input(type="password", name="password", placeholder="password")
-            input(type="submit", value="login")
-        include partials/socialLogin
+doctype html
+html
+    head
+        link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.7.2/css/all.css", integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr", crossorigin="anonymous")
+        title #{pageTitle} | #{siteName}
+        link(rel="stylesheet", href="/static/styles.css")
+    body
+        .form__container
+            img(src="../images/thank-you.svg")
+            form(action="/login", method="post")
+                input(type="email", name="email", placeholder="Email")
+                input(type="password", name="password", placeholder="password")
+                input(type="submit", value="LOGIN")
+            p.info__join 아이디가 없으신가요? 
+                a(href=routes.join) 가입하기
+            include partials/socialLogin

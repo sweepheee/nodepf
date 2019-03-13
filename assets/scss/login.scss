@@ -1,0 +1,40 @@
+
+
+.form__container {
+    width: 26%;
+    margin: 10% auto;
+    img {
+        width: 250px;
+        margin-left: 120px;
+        margin-bottom: 30px;
+    }
+    p {
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        a {
+            text-decoration: underline;
+            color: blue;
+        }
+    }
+    input {
+        width: 500px;
+        height: 50px;
+        font-size: 32px;
+        padding-left: 15px;
+        margin-bottom: 15px;
+    }
+    input[type='email'] {
+    }
+    input[type='submit'] {
+        border-radius: 15px;
+        background-color: #2980b9;
+        color: white;
+        margin: 0 auto;
+        transition: background-color 1s;
+
+        &:hover {
+            background-color: #2c3e50;
+        }
+    }
+}

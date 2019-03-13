@@ -7,22 +7,20 @@ header.header
                 a(href=routes.home) HOME
             li
                 a(href=routes.board) BOARD
-            li
-                a(href="/board/write") write
             li 
                 a(href="#") VIDEO
             li 
                 a(href="#") MAP
         ul
-            if !user
+            if !loggedUser
                 li 
                     a(href=routes.login) LOGIN
                 li 
                     a(href=routes.join) JOIN
             else
                 li
-                    a(href="#") INFO
+                    a(href=routes.me) INFO
                 li
-                    a(href="#") LOGOUT
+                    a(href=routes.logout) LOGOUT
 .container
-    img(src="../images/bg01.jpg")
+    img(src="../images/bg02.jpg")

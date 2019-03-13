@@ -10,6 +10,7 @@ const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
+const ME = "/me";
 
 // board
 
@@ -17,7 +18,10 @@ const BOARD = "/board";
 const WRITE = "/write";
 const BOARD_VIEW = "/:id"
 
+// Github Login
 
+const GITHUB = "/auth/github";
+const GITHUB_CALLBACK = "/auth/github/callback";
 
 const routes = {
     home: HOME,
@@ -41,7 +45,10 @@ const routes = {
             return `/board/${id}`;
         }
         return BOARD_VIEW;
-    }
+    },
+    github: GITHUB,
+    githubCallback : GITHUB_CALLBACK,
+    me: ME
 };
 
 export default routes;
