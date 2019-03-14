@@ -5,7 +5,7 @@ import moment from "moment";
 
 export const board = async (req, res) => {
     try {
-        const posts = await Board.find({}).sort({no:-1});
+        const posts = await Board.find({}).sort({no:-1}).populate('creator');
         console.log(posts);
         res.render("board", {pageTitle: "board", posts, moment});
     }catch(error) {
@@ -23,7 +23,7 @@ export const postWrite = async(req, res) => {
             file: { path }
         } = req;
         let no = 0;
-        const boardNo = await Board.count({}, (err, count) => {
+        await Board.count({}, (err, count) => {
             console.log("users: ", count);
             if(count===0) {
                 no = 1;
@@ -36,9 +36,12 @@ export const postWrite = async(req, res) => {
             no,
             title,
             content,
-            imageFile: path
+            imageFile: path,
+            creator: req.user.id
         });
-        console.log(newPosts.id)
+        console.log(newPosts.id);
+        req.user.boards.push(newPosts.id);
+        req.user.save();
         res.redirect(routes.boardView(newPosts.id));
     }catch(error) {
         console.log(error);
@@ -52,7 +55,7 @@ export const getBoardView = async (req, res) => {
         params: { id }
     } = req;
     try {
-        const post = await Board.findById(id)
+        const post = await Board.findById(id).populate('creator');
         console.log(post+"post!!!!!");
         res.render("boardView", {pageTitle: post.title, post, moment})
     }catch(error) {

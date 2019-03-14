@@ -6,5 +6,5 @@ block content
             img(src=`../${post.imageFile}`)
             p.board__title=post.title
             p.board__content=post.content
-            p.board__date=post.createdAt
+            p.board__date=post.creator.name
             input(type="submit", value="write")

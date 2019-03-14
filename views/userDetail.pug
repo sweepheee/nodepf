@@ -3,5 +3,14 @@ extends layouts/main
 block content
     .user-profile
         .user-profile__header
-            img.avatar(src=user.avatarUrl)
-            h4.profile__username=user.name 
+            if user.avatarUrl
+                img.avatar.user__select__avatar(src=`/${user.avatarUrl}`)
+            else 
+                img.avatar(src="../images/user-default.svg")
+                p.pls__upload__profile 프로필사진이 없습니다.
+            h4.profile__username=user.name
+            h3.profile__userEmail=user.email
+
+            if loggedUser.id === user.id
+                a(href=`/users${routes.editProfile}`)
+                    button.edit__profile  개인정보수정 

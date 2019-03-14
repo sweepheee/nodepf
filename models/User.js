@@ -7,7 +7,13 @@ const UserSchema = new mongoose.Schema({
     email: String,
     avatarUrl: String,
     facebookId: Number,
-    githubId: Number
+    githubId: Number,
+    boards: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Board"
+        }
+    ]
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: 'email' });

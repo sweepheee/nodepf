@@ -1,12 +1,12 @@
 footer.footer
     .footer__in
         if loggedUser
-            img(src=loggedUser.avatarUrl, width="200px")
-            P=loggedUser.email
-            button
-                a(href=routes.me) 개인정보 
-            button
-                a(href=routes.logout) 로그아웃
+            if loggedUser.avatarUrl
+                img(src=`/${loggedUser.avatarUrl}`, width="200px")
+            else
+                img(src="../images/user-default.svg", width="200px")
+            h2=loggedUser.name
+            h3=loggedUser.email
 
         else
             a(href=routes.login) 로그인

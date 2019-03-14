@@ -18,7 +18,7 @@ block content
                             td
                                 a(href=`board/${post.id}`)=post.title
                             td
-                                a(href=`board/${post.id}`)=post.title
+                                a(href=routes.userDetail(post.creator.id)) #{post.creator.name}
                             td
                                 a(href=`board/${post.id}`)=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
 

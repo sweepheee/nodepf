@@ -1,0 +1,12 @@
+extends layouts/main
+
+block content
+    .form__container
+            form(action=`/users${routes.editProfile}`, method="post", enctype="multipart/form-data")
+                label(for="profilePicture") 프로필사진
+                input(type="file", id="profilePicture" name="profilePicture", accept="image/*")
+                input(type="text", name="name", value=loggedUser.name)
+                input(type="password", name="oldPassword", placeholder="이전 비밀번호")
+                input(type="password", name="newPassword", placeholder="새로운 비밀번호")
+                input(type="password", name="newPassword2", placeholder="새로운 비밀번호 확인")
+                input(type="submit", value="수정하기")

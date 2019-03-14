@@ -1,0 +1,38 @@
+.user-profile {
+    width: 10%;
+    margin: 150px auto;
+    text-align: center;
+    img.avatar {
+        max-width: 200px;
+    }
+    img.user__select__avatar {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+    }
+    p.pls__upload__profile {
+        color: gray;
+    }
+    h4 {
+        margin-top: 30px;
+        font-size: 40px;
+    }
+    h3 {
+        margin-top: 15px;
+    }
+    button {
+        margin-top: 80px;
+        background-color: transparent;
+        color: black;
+        border: 1px solid black;
+        width: 180px;
+        height: 40px;
+        cursor: pointer;
+        transition: 0.5s;
+        &:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+}
+

@@ -14,7 +14,11 @@ const boardSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    imageFile: String
+    imageFile: String,
+    creator: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    }
 })
 
 const model = mongoose.model("board", boardSchema);

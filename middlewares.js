@@ -2,6 +2,7 @@ import routes from "./routes";
 import multer from "multer";
 
 const uploadWrite = multer({ dest:"uploads/image/" });
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const localsMiddleware = (req, res, next) => {
     res.locals.siteName = 'TEST';
@@ -27,4 +28,5 @@ export const onlyPrivate = (req, res, next) => {
     }
 }
 
-export const uploadWriteSingle = uploadWrite.single("imageFile")
+export const uploadWriteSingle = uploadWrite.single("imageFile");
+export const uploadAvatar = multerAvatar.single("profilePicture");
