@@ -10,6 +10,7 @@ import mongoose from "mongoose";
 import userRouter from "./routers/userRouter";
 import globalRouter from "./routers/globalRouter";
 import boardRouter from "./routers/boardRouter";
+import apiRouter from "./routers/apiRouter";
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
 import "./db";
@@ -57,5 +58,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.board, boardRouter);
+app.use(routes.api, apiRouter);
 
 app.listen(PORT, (req, res) => console.log("server on http://localhost:4000"));

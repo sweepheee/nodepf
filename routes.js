@@ -16,12 +16,18 @@ const ME = "/me";
 
 const BOARD = "/board";
 const WRITE = "/write";
-const BOARD_VIEW = "/:id"
+const BOARD_VIEW = "/:id";
+const BOARD_PAGING = "/paging/:i"
 
 // Github Login
 
 const GITHUB = "/auth/github";
 const GITHUB_CALLBACK = "/auth/github/callback";
+
+// API
+
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
 
 const routes = {
     home: HOME,
@@ -48,7 +54,15 @@ const routes = {
     },
     github: GITHUB,
     githubCallback : GITHUB_CALLBACK,
-    me: ME
+    me: ME,
+    api: API,
+    registerView: REGISTER_VIEW,
+    boardPaging: (i) => {
+        if(i) {
+            return `/board/paging/${i}`;
+        }
+        return BOARD_PAGING;
+    }
 };
 
 export default routes;

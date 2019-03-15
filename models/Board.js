@@ -18,6 +18,10 @@ const boardSchema = new mongoose.Schema({
     creator: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
+    },
+    views : {
+        type: Number,
+        default: 0
     }
 })
 

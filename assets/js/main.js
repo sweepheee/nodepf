@@ -1,6 +1,4 @@
 import "../scss/styles.scss";
+import "./view"
 
 
-const something = async () => {
-    console.log("something");
-}
