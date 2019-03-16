@@ -16,3 +16,20 @@ block content
                     img(src=`/${post.imageFile}`)
                     pre
                         p #{post.content.replace(/<br>/gi, '\n')}
+
+        .board__comments
+            if post.comments.length === 1
+                span.board__comment-number
+                    span#jsCommentNumber 1
+                    | comment
+            else
+                span.board__comment-number
+                    span#jsCommentNumber=post.comments.length
+                    | comments
+            ul.board__comments-list#jsCommentList
+                each comment in post.comments
+                    li
+                        span=comment.text
+            form.add__comment#jsAddComment
+                input(type="text", placeholder="Add a comment", name="comment")
+                input(type='submit', value='입력')

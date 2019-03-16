@@ -22,7 +22,17 @@ const boardSchema = new mongoose.Schema({
     views : {
         type: Number,
         default: 0
-    }
+    },
+    delete : {
+        type: Number,
+        default : 0
+    },
+    comments: [
+        {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "Comment"
+        }
+      ]
 })
 
 const model = mongoose.model("board", boardSchema);

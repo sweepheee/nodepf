@@ -1,6 +1,7 @@
 import routes from "../routes"
 import User from "../models/User";
 import Board from "../models/Board";
+import Comment from "../models/Comment";
 import moment from "moment";
 
 export const board = async (req, res) => {
@@ -90,7 +91,7 @@ export const getBoardView = async (req, res) => {
         params: { id }
     } = req;
     try {
-        const post = await Board.findById(id).populate('creator');
+        const post = await Board.findById(id).populate('creator').populate('comments');
         console.log(post+"post!!!!!");
         res.render("boardView", {pageTitle: post.title, post, moment})
     }catch(error) {
@@ -115,6 +116,32 @@ export const postRegisterview = async (req, res) => {
         res.status(400);
         res.end();
     }finally {
+        res.end();
+    }
+}
+
+
+// Add Comment
+
+export const postAddComment = async (req, res) => {
+    const {
+        params: {id},
+        body: {comment},
+        user
+    } = req;
+
+    try {
+        const board = await Board.findById(id);
+        const newComment = await Comment.create({
+            text: comment,
+            creator: user.id
+        });
+        board.comments.push(newComment.id);
+        board.save();
+    }catch(error) {
+        console.log(error);
+        res.status(400);
+    }finally{
         res.end();
     }
 }
