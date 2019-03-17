@@ -36,7 +36,7 @@ const sendComment = async (comment) => {
 
 const handleSubmit = (event) => {
     event.preventDefault();
-    const commentInput = addCommentForm.querySelector("input");
+    const commentInput = addCommentForm.querySelector("textarea");
     const comment = commentInput.value;
     sendComment(comment);
     commentInput.value = "";

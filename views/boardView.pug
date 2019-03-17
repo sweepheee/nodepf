@@ -27,9 +27,22 @@ block content
                     span#jsCommentNumber=post.comments.length
                     | comments
             ul.board__comments-list#jsCommentList
-                each comment in post.comments
-                    li
-                        span=comment.text
+                each cmt in CMT
+                    if cmt.delete === 0
+                        li
+                            img(src=`/${cmt.creator.avatarUrl}`, align="left")
+                            .comment__text__box
+                                span.comment__title
+                                    a(href=routes.userDetail(cmt.creator.id))=cmt.creator.name
+                                span.comment__date=moment(cmt.createdAt).format('YYYY-MM-DD HH:mm')
+                                if loggedUser.id == cmt.creator.id
+                                    a
+                                        i.fas.fa-times
+                                .vertical__line
+                                span.comment__content=cmt.text
+                    else
+                        li
+                            span 삭제된 댓글입니다.
             form.add__comment#jsAddComment
-                input(type="text", placeholder="Add a comment", name="comment")
+                textarea( placeholder="Add a comment", name="comment")
                 input(type='submit', value='입력')

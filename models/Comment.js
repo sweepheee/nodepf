@@ -13,6 +13,10 @@ const CommentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
+    boards: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Board"
+    },
     delete : {
         type: Number,
         default: 0

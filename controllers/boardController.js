@@ -92,8 +92,10 @@ export const getBoardView = async (req, res) => {
     } = req;
     try {
         const post = await Board.findById(id).populate('creator').populate('comments');
+        const CMT = await Comment.find({ boards : id }).populate('creator');
         console.log(post+"post!!!!!");
-        res.render("boardView", {pageTitle: post.title, post, moment})
+        console.log("CMT"+CMT);
+        res.render("boardView", {pageTitle: post.title, post, moment, CMT, moment})
     }catch(error) {
         console.log("error detected");
         res.redirect(routes.boardView);
@@ -132,12 +134,16 @@ export const postAddComment = async (req, res) => {
 
     try {
         const board = await Board.findById(id);
+        const userPush = await User.findById(user.id);
         const newComment = await Comment.create({
             text: comment,
-            creator: user.id
+            creator: user.id,
+            boards: id
         });
         board.comments.push(newComment.id);
+        userPush.comments.push(newComment.id);
         board.save();
+        userPush.save();
     }catch(error) {
         console.log(error);
         res.status(400);
