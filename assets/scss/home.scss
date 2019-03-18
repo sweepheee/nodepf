@@ -30,10 +30,26 @@
                         width: 230px;
                         height: 400px;
                         text-align: center;
-                        border: 1px solid black;
+                        border: 1px solid #dcdde1;
+                        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
                         border-collapse: collapse;
                         margin-left: 30px;
                         float: left;
+                        overflow:hidden;
+                        p.home__post__title {
+                            padding-top: 10px;
+                            font-size: 24px;
+                            height: 106px;
+                            overflow: hidden;
+                        }
+                        p.home__post__writer{
+                            font-size:18px;
+                            margin: 15px;
+                        }
+                        p.home__post__date {
+                            padding-top: 30px;
+                            font-size: 12px;
+                        }
                     }
                 }
             }
@@ -41,23 +57,40 @@
                 clear: both;
                 padding-top: 100px;
                 ul {
+                    display: inline;
                     li {
                         margin-top: 30px;
                         width: 230px;
                         height: 400px;
                         text-align: center;
-                        border: 1px solid black;
+                        border: 1px solid #dcdde1;
+                        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
                         border-collapse: collapse;
                         margin-left: 30px;
                         float: left;
+                        overflow:hidden;
+                        p.home__post__title {
+                            padding-top: 10px;
+                            font-size: 24px;
+                            height: 106px;
+                            overflow: hidden;
+                        }
+                        p.home__post__writer{
+                            font-size:18px;
+                            margin: 15px;
+                        }
+                        p.home__post__date {
+                            padding-top: 30px;
+                            font-size: 12px;
+                        }
                     }
                 }
+            }
             }
 
         }
 
     }
-}
 
 // .body__container_sec {
 //     padding: 0;

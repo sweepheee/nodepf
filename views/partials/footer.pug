@@ -1,10 +1,11 @@
 footer.footer
     .footer__in
         if loggedUser
-            if loggedUser.avatarUrl
+            if loggedUser.githubId && loggedUser.imageChange == 0
+                img(src=`${loggedUser.avatarUrl}`, width="200px")
+            else if !loggedUser.githubId || loggedUser.imageChange == 1
                 img(src=`/${loggedUser.avatarUrl}`, width="200px")
-            else
-                img(src="../images/user-default.svg", width="200px")
+
             h2=loggedUser.name
             h3=loggedUser.email
 

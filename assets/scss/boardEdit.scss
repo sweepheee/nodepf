@@ -1,0 +1,89 @@
+.form__container__board__in {
+    width: 100%;
+    margin: 10% auto;
+    table {
+        width: 90%;
+        margin: 0 auto;
+        tr {
+            margin: 0 auto;
+            td {
+                input::placeholder {
+                    color: black;
+                }
+                padding-top: 30px;
+                input.board__in__title {
+                    width: 100%;
+                    padding-left: 50px;
+                    padding-right: 50px;
+                    font-size: 43px;
+                    padding-top : 15px;
+                    background-color: #6c5ce7;
+                    color: white;
+                    border-radius: 15px 15px 0 0;
+                    height: 80px;
+                }
+                &.board__in__info {
+                    background-color: #a29bfe;
+                    color: white;
+                    height: 40px;
+                    padding-left: 30px;
+                    padding-top: 14px;
+                }
+                &.board__view__edit {
+                    padding: 10px;
+                    button {
+                        float: right;
+                        background-color: #40739e;
+                        border: none;
+                        width: 130px;
+                        height: 40px;
+                        border-radius: 50px;
+                        color: white;
+                        cursor: pointer;
+                        box-shadow: 0px 0px 0px rgba(0,0,0,0.1);
+                        transform: translateY(0);
+                        transition: 0.5s;
+                        &:hover {
+                            transform: translateY(-10px);
+                            background-color: #273c75;
+                            box-shadow: 4px 4px 4px rgba(0,0,0,0.3);
+                        }
+                    }
+                }
+                .board__in__content {
+                    margin: 0;
+                    width: 100%;
+                    border: 1px solid #dcdde1;
+                    border-radius: 15px;   
+                    background-color: white;            
+                    width: 100%;
+                    padding: 0;
+                    min-height: 700px;
+                    height: auto;
+                    padding-bottom : 30px;
+                    textarea {
+                        width: 100%;
+                        resize: none;
+                        border: none;
+                        &.edit__textarea {
+                            min-height: 200px;
+                        }
+                        &.write__textarea {
+                            min-height: 600px;
+                        }
+                    }
+                    p {
+                        margin-top: 30px;
+                        padding-left: 20px;
+                    }
+                    img {
+                        padding: 0;
+                        max-width: 100%;
+                        height: auto;
+                        margin-top: 30px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+extends layouts/main
+
+block content
+    .form__container__board__in
+        form(action=`/board/${post.id}/edit`, method="post", enctype="multipart/form-data")
+            table
+                tr
+                    td(colspan='4')
+                        input(type=text, name="title", value=post.title).board__in__title
+                tr
+                    td.board__in__info 작성자
+                    td.board__in__info
+                        a(href=routes.userDetail(post.creator.id))=post.creator.name
+                    td.board__in__info 조회수
+                    td.board__in__info=post.views
+                tr
+                    td(colspan='4')
+                        .board__in__content
+                            img(src=`/${post.imageFile}`)
+                            pre
+                                textarea(name="content").edit__textarea #{post.content.replace(/<br>/gi, '\n')}
+                            label(for="fileChange") 이미지바꾸기
+                            input(type="file", id="fileChange" name="imageFile")
+                tr
+                    td(colspan="4").board__view__edit
+                        input(type="submit", value="글 수정하기")

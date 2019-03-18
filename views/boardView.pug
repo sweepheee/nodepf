@@ -2,7 +2,7 @@ extends layouts/main
 
 block content
     .form__container__board__in
-        table
+        table.boardView__table
             tr
                 td(colspan='4').board__in__title=post.title
             tr
@@ -12,37 +12,60 @@ block content
                 td.board__in__info 조회수
                 td.board__in__info=post.views
             tr
-                td.board__in__content(colspan='4')
-                    img(src=`/${post.imageFile}`)
-                    pre
-                        p #{post.content.replace(/<br>/gi, '\n')}
+                td(colspan='4')
+                    .board__in__content
+                        img(src=`/${post.imageFile}`)
+                        pre
+                            p #{post.content.replace(/<br>/gi, '\n')}
 
-        .board__comments
-            if post.comments.length === 1
-                span.board__comment-number
-                    span#jsCommentNumber 1
-                    | comment
-            else
-                span.board__comment-number
-                    span#jsCommentNumber=post.comments.length
-                    | comments
-            ul.board__comments-list#jsCommentList
-                each cmt in CMT
-                    if cmt.delete === 0
-                        li
-                            img(src=`/${cmt.creator.avatarUrl}`, align="left")
-                            .comment__text__box
-                                span.comment__title
-                                    a(href=routes.userDetail(cmt.creator.id))=cmt.creator.name
-                                span.comment__date=moment(cmt.createdAt).format('YYYY-MM-DD HH:mm')
-                                if loggedUser.id == cmt.creator.id
-                                    a
-                                        i.fas.fa-times
-                                .vertical__line
-                                span.comment__content=cmt.text
-                    else
-                        li
-                            span 삭제된 댓글입니다.
-            form.add__comment#jsAddComment
-                textarea( placeholder="Add a comment", name="comment")
-                input(type='submit', value='입력')
+            tr
+                if loggedUser
+                    if post.creator.id==loggedUser.id
+                        td(colspan="4").board__view__edit
+                            a
+                                button#jsPostDelete 글 삭제하기
+                            a(href=`/board/${post.id}/edit`)
+                                button 글 수정하기
+
+        if loggedUser
+            .board__comments
+                if post.comments.length === 1
+                    span.board__comment-number
+                        span#jsCommentNumber 1
+                        |  comment
+                else
+                    span.board__comment-number
+                        span#jsCommentNumber=post.comments.length
+                        |  comments
+                ul.board__comments-list#jsCommentList
+                    each cmt in CMT
+                        if cmt.delete === 0
+                            li
+                                if cmt.creator.githubId && cmt.creator.imageChange == 0
+                                    img(src=`${cmt.creator.avatarUrl}`, align="left")
+                                else if !cmt.creator.githubId || cmt.creator.imageChange == 1
+                                    img(src=`/${cmt.creator.avatarUrl}`, align="left")
+                                .comment__text__box
+                                    span.comment__title
+                                        a(href=routes.userDetail(cmt.creator.id))=cmt.creator.name
+                                    span.comment__date=moment(cmt.createdAt).format('YYYY-MM-DD HH:mm')
+                                    if loggedUser.id == cmt.creator.id
+                                        a(href=`comment/delete/${cmt.id}`).jsCommentDelete
+                                            i.fas.fa-times
+                                    .vertical__line
+                                    span.comment__content=cmt.text
+                        else
+                            li
+                                if cmt.creator.githubId && cmt.creator.imageChange == 0
+                                    img(src=`${cmt.creator.avatarUrl}`, align="left")
+                                else if !cmt.creator.githubId || cmt.creator.imageChange == 1
+                                    img(src=`/${cmt.creator.avatarUrl}`, align="left")
+                                .comment__text__box
+                                    span.comment__title
+                                        a(href=routes.userDetail(cmt.creator.id))=cmt.creator.name
+                                    span.comment__date=moment(cmt.createdAt).format('YYYY-MM-DD HH:mm')
+                                    .vertical__line
+                                    span.comment__deleted 삭제된 댓글입니다.
+                form.add__comment#jsAddComment
+                    textarea( placeholder="Add a comment", name="comment")
+                    input(type='submit', value='입력')

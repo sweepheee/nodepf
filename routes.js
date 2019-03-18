@@ -17,7 +17,7 @@ const ME = "/me";
 const BOARD = "/board";
 const WRITE = "/write";
 const BOARD_VIEW = "/:id";
-const BOARD_PAGING = "/paging/:i"
+const BOARD_PAGING = "/paging/:i";
 
 // Github Login
 
@@ -65,7 +65,20 @@ const routes = {
         }
         return BOARD_PAGING;
     },
-    addComment: ADD_COMMENT
+    addComment: ADD_COMMENT,
+    boardEdit : (id) => {
+        if(id) {
+            return `/board/${id}/edit`;
+        }
+        return `/board/${id}`;
+    },
+    boardDelete: (id) => {
+        if(id) {
+            return `/board/${id}/delete`
+        }
+        return `/board/${id}`;
+    }
+
 };
 
 export default routes;

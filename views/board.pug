@@ -13,15 +13,26 @@ block content
                         td 날짜
                 tbody
                     each post in posts.reverse()
-                        tr
-                            td
-                                a(href=`/board/${post.id}`)=post.no
-                            td
-                                a(href=`/board/${post.id}`)=post.title
-                            td
-                                a(href=routes.userDetail(post.creator.id)) #{post.creator.name}
-                            td
-                                a(href=`board/${post.id}`)=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
+                        if post.delete == 0
+                            tr
+                                td
+                                    a(href=`/board/${post.id}`)=post.no
+                                td.board__title__overflow
+                                    a(href=`/board/${post.id}`)=post.title
+                                td
+                                    a(href=routes.userDetail(post.creator.id)) #{post.creator.name}
+                                td
+                                    a(href=`board/${post.id}`)=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
+                        else
+                            tr
+                                td
+                                    p=post.no
+                                td
+                                    p.deleted__post__title 삭제된 게시글입니다.
+                                td
+                                    p
+                                td
+                                    p=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
 
             if loggedUser
                 a(href="/board/write")

@@ -8,7 +8,7 @@ export const board = async (req, res) => {
     try {
         const pagggg = req.query.paging
         const page_process = (pagggg-1) * 10;
-        const posts = await Board.find({}).populate('creator').sort({"createdAt":1}).skip(page_process).limit(10);
+        const posts = await Board.find({}).populate('creator').sort({ "createdAt":1 }).skip(page_process).limit(10);
         let page = 1;
         await Board.count({}, (err, count) => {
             if(count>10) {
@@ -49,7 +49,7 @@ export const boardPageNumber = async (req, res) => {
 
 // WRITE
 export const getWrite = (req, res) => {res.render("write", {pageTitle: "write"});}
-export const postWrite = async(req, res) => {
+export const postWrite = async (req, res) => {
     try {
         const { 
             body: {title, content}, 
@@ -93,8 +93,6 @@ export const getBoardView = async (req, res) => {
     try {
         const post = await Board.findById(id).populate('creator').populate('comments');
         const CMT = await Comment.find({ boards : id }).populate('creator');
-        console.log(post+"post!!!!!");
-        console.log("CMT"+CMT);
         res.render("boardView", {pageTitle: post.title, post, moment, CMT, moment})
     }catch(error) {
         console.log("error detected");
@@ -118,6 +116,72 @@ export const postRegisterview = async (req, res) => {
         res.status(400);
         res.end();
     }finally {
+        res.end();
+    }
+}
+
+export const getEditBoard = async (req, res) => {
+    const {
+        params: { id }
+    } = req;
+    try {
+        const post = await Board.findById(id).populate('creator');
+        if(post.creator.id == req.user.id) {
+            res.render("boardEdit", {pageTitle: "board Edit", post, moment});
+        }else {
+            console.log("실패");
+            res.redirect(routes.boardView(id));
+        }
+
+    }catch(error) {
+        console.log(error);
+        res.status(400);
+    }
+}
+
+export const postEditBoard = async (req, res) => {
+
+    try {
+        const {
+            params: { id },
+            body: { title, content },
+            file
+        } = req;
+        console.log(title+"타이틀, 콘텐트 :"+ content);
+        const file_ = await Board.findById(id);
+        await Board.findByIdAndUpdate(id, {
+            title,
+            content,
+            imageFile : file ? file.path : file_.imageFile
+        });
+        res.redirect(routes.boardView(id));
+    }catch(error) {
+        console.log(error);
+        res.redirect(routes.board);
+    }
+}
+
+
+
+export const deleteBoard = async (req, res) => {
+    console.log("del in")
+    const { 
+        params: {id}
+    } = req;
+    try {
+        const post = await Board.findById(id).populate('creator');
+        if(post.creator.id==req.user.id) {
+            post.delete=1;
+            post.save();
+            res.redirect(routes.board);
+            res.status(200);
+        }else {
+            res.status(400);
+            res.end();
+        }
+    }catch(error) {
+        console.log(error);
+        res.statud(400);
         res.end();
     }
 }
@@ -148,6 +212,32 @@ export const postAddComment = async (req, res) => {
         console.log(error);
         res.status(400);
     }finally{
+        res.end();
+    }
+}
+
+
+
+export const postCommentDelete = async (req, res) => {
+    const {
+        params: {id}
+    } = req;
+    try {
+        console.log(id);
+        const commentID = await Comment.findById(id).populate("creator");
+        console.log("커멘트아이디33"+commentID);
+        if(commentID.creator.id === req.user.id) {
+            commentID.delete = 1;
+        }
+        commentID.save();
+        res.redirect(routes.boardView(commentID.boards))
+        res.status(200);
+        
+    } catch(error) {
+        console.log(error);
+        res.status(400);
+    }finally {
+        res.redirect(routes.boardView(commentID.boards));
         res.end();
     }
 }

@@ -1,9 +1,19 @@
 extends layouts/main
 
 block content
-    .form__container
+    .form__container__board__in
         form(action=`/board${routes.write}`, method="post", enctype="multipart/form-data")
-            input(type="text", name="title", placeholder="Title", required)
-            textarea(name="content", rows="30", cols="50", resize="none", required)
-            input(type="file", name="imageFile", placeholder="upload", accept=".png, .jpg, .jpeg, .gif", required)
-            input(type="submit", value="write")
+            table
+                tr
+                    td(colspan='4')
+                        input(type=text, name="title", placeholder="제목", required).board__in__title
+                tr
+                    td(colspan='4')
+                        .board__in__content
+                            pre
+                                textarea(name="content", required).write__textarea
+                            label(for="fileChange") 이미지업로드
+                            input(type="file", id="fileChange" name="imageFile", accept=".png, .jpg, .jpeg, .gif", required)
+                tr
+                    td(colspan="4").board__view__edit
+                        input(type="submit", value="글 작성하기")

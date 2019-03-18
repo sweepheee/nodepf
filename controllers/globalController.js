@@ -2,12 +2,13 @@ import passport from "passport";
 import routes from "../routes"
 import User from "../models/User";
 import Board from "../models/Board";
-
+import moment from "moment";
 
 export const home = async (req, res) => {
     try {
-        const posts = await Board.find({}).sort({no:-1}).limit(5);
-        res.render("home", {pageTitle: "home", User, posts});
+        const posts = await Board.find({}).sort({no:-1}).limit(5).populate('creator');
+        const popul = await Board.find({}).sort({views:-1}).limit(5).populate('creator');
+        res.render("home", {pageTitle: "home", User, posts, moment, popul});
     }catch(error) {
         console.log(error);
         res.render("home", {pageTitle: "home", User: [] });

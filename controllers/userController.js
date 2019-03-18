@@ -29,10 +29,18 @@ export const postEditProfile = async (req, res) => {
             body: {name, oldPassword, newPassword, newPassword2},
             file
         } = req;
-        await User.findByIdAndUpdate(req.user.id, {
-            name,
-            avatarUrl: file ? file.path : req.user.avatarUrl
-        });
+        if(file) {
+            await User.findByIdAndUpdate(req.user.id, {
+                name,
+                avatarUrl: file ? file.path : req.user.avatarUrl,
+                imageChange: 1
+            });
+        }else {
+            await User.findByIdAndUpdate(req.user.id, {
+                name,
+                avatarUrl: file ? file.path : req.user.avatarUrl
+            });
+        }
         if(oldPassword !== '' && newPassword !== '' && newPassword2 !== '') {
             console.log("널값아닐경우진입");
             if(newPassword !== newPassword2){

@@ -1,6 +1,6 @@
 import express from "express";
 import routes from "../routes";
-import { onlyPublic, onlyPrivate, uploadAvatar } from "../middlewares";
+import { onlyPrivate, uploadAvatar } from "../middlewares";
 import { userDetail, getEditProfile, postEditProfile } from "../controllers/userController";
 
 const userRouter = express.Router();

@@ -4,7 +4,10 @@ block content
     .user-profile
         .user-profile__header
             if user.avatarUrl
-                img.avatar.user__select__avatar(src=`/${user.avatarUrl}`)
+                if user.githubId && user.imageChange == 0
+                    img(src=`${user.avatarUrl}`, align="left").user__select__avatar
+                else if !user.githubId || user.imageChange == 1
+                    img(src=`/${user.avatarUrl}`, align="left").user__select__avatar
             else 
                 img.avatar(src="../images/user-default.svg")
                 p.pls__upload__profile 프로필사진이 없습니다.

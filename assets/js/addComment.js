@@ -30,7 +30,7 @@ const sendComment = async (comment) => {
      });
      console.log(response);
      if(response.status === 200) {
-         addComment(comment);
+        window.location.reload();
      }
 }
 

@@ -13,14 +13,23 @@ block content
                     ul.newPosts__list
                         if posts
                             each post in posts
-                                li=post.title
+                                li
+                                    a(href=routes.boardView(post.id))
+                                        img(src=post.imageFile, width="230px", height="180px")
+                                        p.home__post__title=post.title
+                                        p.home__post__writer 작성자 : #{post.creator.name}
+                                        p.home__post__date=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
 
                 .popPosts_title
                     p 인기글
                     hr
-                    ul
-                        li 새글2
-                        li 새글2
-                        li 새글2
-                        li 새글2
-                        li 새글2
+                    ul.newPosts__list
+                        if posts
+                            each populs in popul
+                                li
+                                    a(href=routes.boardView(populs.id))
+                                        img(src=populs.imageFile, width="230px", height="180px")
+                                        p.home__post__title=populs.title
+                                        p.home__post__writer 작성자 : #{populs.creator.name}
+                                        p.home__post__writer 조회수 : #{populs.views}
+                                        p.home__post__date=moment(populs.createdAt).format('YYYY-MM-DD HH:mm')
