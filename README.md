@@ -3,8 +3,8 @@
 ## PLAN:
 
  - [x] BASE
- - [ ] VIEW PAGE
- - [ ] MONGO DB
- - [ ] SASS
- - [ ] USER
- - [ ] BOARD
+ - [x] VIEW PAGE
+ - [x] MONGO DB
+ - [x] SASS
+ - [x] USER
+ - [x] BOARD
