@@ -30,13 +30,20 @@ block content
                                 td
                                     p.deleted__post__title 삭제된 게시글입니다.
                                 td
-                                    p
+                                    p #{post.creator.name}
                                 td
                                     p=moment(post.createdAt).format('YYYY-MM-DD HH:mm')
 
             if loggedUser
                 a(href="/board/write")
                     button.go__write 글쓰기
+
+            
+            .seaching__post
+                form(action="/board", method="post")
+                    input(type="text", name="seachingBy")
+                    button(type="submit").seaching__button
+                        i.fas.fa-search
 
 
             .paging

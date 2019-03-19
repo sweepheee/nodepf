@@ -6,9 +6,6 @@ import moment from "moment";
 
 export const board = async (req, res) => {
     try {
-        const pagggg = req.query.paging
-        const page_process = (pagggg-1) * 10;
-        const posts = await Board.find({}).populate('creator').sort({ "createdAt":1 }).skip(page_process).limit(10);
         let page = 1;
         await Board.count({}, (err, count) => {
             if(count>10) {
@@ -17,12 +14,26 @@ export const board = async (req, res) => {
             }
         });
         res.redirect(`/board/paging/${page}`);
-        //res.render("board", {pageTitle: "board", posts, moment, page : Math.floor(page)});
     }catch(error) {
         console.log(error);
         res.render("board", {pageTitle: "board", boards: [] });
     }
 }
+
+export const postBoard = async (req, res) => {
+    const {
+        body : { seachingBy }
+    } = req;
+    try {
+        const posts = await Board.find({delete: 0}).regex('title', seachingBy).populate('creator').sort({"createdAt":1}).limit(10);
+        res.render("board", {pageTitle: "board", posts, moment});
+    }catch(error) {
+        console.log(error);
+
+    }
+}
+
+
 
 export const boardPageNumber = async (req, res) => {
     try {
@@ -34,7 +45,6 @@ export const boardPageNumber = async (req, res) => {
         const posts = await Board.find({}).populate('creator').sort({"createdAt":1}).skip(page_process).limit(10);
         let page = 1;
         await Board.count({}, (err, count) => {
-            console.log("카운터"+count);
             if(count>10) {
                 page = (count / 10) + 1;
                 page = Math.floor(page);

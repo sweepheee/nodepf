@@ -13,6 +13,7 @@ import boardRouter from "./routers/boardRouter";
 import apiRouter from "./routers/apiRouter";
 import routes from "./routes";
 import { localsMiddleware } from "./middlewares";
+import flash from "express-flash";
 import "./db";
 import dotenv from "dotenv";
 import "./models/User"
@@ -35,6 +36,7 @@ app.use(helmet());
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("static"));
 app.use("/images", express.static("images"));
+app.use("/js", express.static("js"));
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(bodyParser.json());
@@ -48,6 +50,8 @@ app.use(session({
     })
   })
 );
+
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
